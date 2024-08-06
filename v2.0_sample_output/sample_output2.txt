@@ -1,0 +1,57 @@
+### LLM output ###
+
+To create a strategy where you buy Bitcoin if its Relative Strength Index (RSI) drops below 30 and sell if it goes above 70, you can utilize the RSI indicator along with buy and sell conditions. Here is a simple Python code snippet demonstrating this strategy:
+
+```python
+# Define RSI threshold values
+rsi_buy_threshold = 30
+rsi_sell_threshold = 70
+
+# Simulated RSI values
+curr_rsi = 25  # Current RSI value (for example)
+prev_rsi = 35  # Previous RSI value (for example)
+
+# Initialize signal
+signal = 0
+
+# Buy condition: RSI drops below the buy threshold
+if curr_rsi < rsi_buy_threshold and prev_rsi >= rsi_buy_threshold:
+    signal = 1  # Buy signal
+
+# Sell condition: RSI goes above the sell threshold
+if curr_rsi > rsi_sell_threshold and prev_rsi <= rsi_sell_threshold:
+    signal = -1  # Sell signal
+
+# Print the signal
+if signal == 1:
+    print("Buy Bitcoin")
+elif signal == -1:
+    print("Sell Bitcoin")
+else:
+    print("Hold position")
+```
+
+In this code snippet:
+- We define RSI buy and sell threshold values as 30 and 70, respectively.
+- We simulate current and previous RSI values for demonstration purposes.
+- We check the conditions for buying (RSI drops below the buy threshold) and selling (RSI goes above the sell threshold) Bitcoin.
+- Based on the conditions, we set the signal to 1 for buying, -1 for selling, and 0 for holding the position.
+- Finally, we print whether to buy, sell, or hold Bitcoin based on the calculated signal.
+
+You can integrate this logic into your trading strategy implementation, considering the actual RSI values and any additional conditions specific to your trading environment.
+
+
+### Context Source ###
+
+Source: RSI-en.py, Start_index: 2626
+Source: RSI-en.py, Start_index: 2162
+Source: Pressure_Line-en.py, Start_index: 7344
+Source: RSI-en.py, Start_index: 2917
+
+
+### Context Similarity Score ###
+
+(Document(metadata={'source': 'RSI-en.py', 'start_index': 2626, 'score': 0.45302292704582214}, page_content='# holding long position \n        elif available_base_amount > self.divide_quote/high_price:\n            if curr_rsi_short < curr_rsi_long and prev_rsi_short > prev_rsi_long:\n                signal = 2\n            if curr_rsi_short >  self.rsi_upper_band:\n                signal = 2'),
+ Document(metadata={'source': 'RSI-en.py', 'start_index': 2162, 'score': 0.46874290704727173}, page_content='# initialize signal to be 0\n        signal = 0\n        if available_base_amount< self.divide_quote/high_price and available_base_amount > -self.divide_quote/high_price:\n            # open long position\n            if curr_rsi_short > curr_rsi_long and prev_rsi_short < prev_rsi_long:\n                signal = 1\n            # open short position\n            if curr_rsi_short < curr_rsi_long and prev_rsi_short > prev_rsi_long:\n                signal = -1'),
+ Document(metadata={'source': 'Pressure_Line-en.py', 'start_index': 7344, 'score': 0.4823268949985504}, page_content='profit = self.buy_price - current_price'),
+ Document(metadata={'source': 'RSI-en.py', 'start_index': 2917, 'score': 0.48344725370407104}, page_content="# holding short position\n        elif available_base_amount < -self.divide_quote/high_price:\n            if curr_rsi_short > curr_rsi_long and prev_rsi_short < prev_rsi_long:\n                signal = -2\n            if curr_rsi_short < self.rsi_lower_band:\n                signal = -2\n            \n        # Sell short\n        if signal == -1:\n            self['is_shorting'] = 'true'\n            CA.log('Sell short ' + str(base))\n            return [\n                {"))
